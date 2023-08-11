@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>IAM User Permissions Viewer</title>
+</head>
+<body>
+    <h1>IAM User Permissions Viewer</h1>
+    <form method="post">
+        <label for="username">Enter IAM Username:</label>
+        <input type="text" id="username" name="username" value="{{ iam_username }}" required>
+        <input type="submit" value="Get Permissions">
+    </form>
+    {% if policies %}
+    <h2>Policies attached to user '{{ iam_username }}':</h2>
+    <ul>
+        {% for policy in policies %}
+        <li>{{ policy }}</li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p>No policies attached to user '{{ iam_username }}'.</p>
+    {% endif %}
+</body>
+</html>
